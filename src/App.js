@@ -40,6 +40,7 @@ Le useEffect il permet d'excuter le code au montage du composant
     const newArr = [...tasks, textEntered];
     setTasks(newArr);
 
+    setTextEntered('');
     // Stock les taches dans le localstorage
     localStorage.setItem('my-tasks', JSON.stringify(newArr));
   };
@@ -62,6 +63,7 @@ Le useEffect il permet d'excuter le code au montage du composant
           // Avec le paramétre `event` on peut accéder à l'élément `input`
           // Donc à sa valeur `event.target.value`
           onChange={onChangeHandler}
+          value={textEntered}
           type="text"
           className="w-full md:w-2/3"
         />
@@ -85,10 +87,20 @@ Le useEffect il permet d'excuter le code au montage du composant
             La propriété `key` est utilisée pour identifier
             chaque élément enfant générer par la méthode `map`
             */
-            <TaskItem key={index} name={item}></TaskItem>
+            <TaskItem
+              key={index}
+              name={item}
+              removeItem={() => {
+                // On copie la ref de tasks donc `newArr` est lié a `tasks`
+                const newArr = [...tasks]; // ref 001 - ref 002
+                // `splice` est méthode qui permet d'ajouter, supprimer ou modifier un element d'une liste (tableau)
+                newArr.splice(index, 1);
+
+                setTasks(newArr); // ref 001
+                localStorage.setItem('my-tasks', JSON.stringify(newArr));
+              }}
+            />
           ))}
-
-
         </ul>
       </section>
     </main>
