@@ -75,7 +75,7 @@ export default function App() {
                 Character Length
               </label>
 
-              <p className="text-xl text-indigo-700">{characterLength}</p>
+              <p className="text-3xl text-indigo-700">{characterLength}</p>
             </div>
             <input
               onChange={onChangeCharacterLength}
