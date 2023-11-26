@@ -53,7 +53,7 @@ export default function App() {
 
   return (
     <main className="w-96 max-w-xl ">
-      <h1 className="text-gray-50 text-center mb-10">PassSafeMaker</h1>
+      <h1 className="text-gray-50 text-center mb-10">PassSafe Maker</h1>
 
       <div className="flex flex-col space-y-6">
         <div className="relative mt-2 rounded-md shadow-sm">
