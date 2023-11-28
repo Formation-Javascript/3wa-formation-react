@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import TaskItem from './components/TaskItem';
-import logo from './assets/images/logo.png';
 
 function App() {
   // 1 er sera la valeur de votre state
@@ -8,6 +7,7 @@ function App() {
   // TOUJOURS LE DÉCLARER AU TOP DE LA FONCTION 💥
   const [textEntered, setTextEntered] = useState('');
   const [tasks, setTasks] = useState([]);
+  const inputRef = useRef(null);
   /* 
 Le useEffect il permet d'excuter le code au montage du composant
 */
@@ -37,14 +37,14 @@ Le useEffect il permet d'excuter le code au montage du composant
 
     // La bonne méthode : utiliser le `spread operator` qui permet de copier
     // une liste (tableau) puis ajouter le nouvelle tâche
-    const newArr = [...tasks, textEntered];
+    const newArr = [...tasks, inputRef.current.value];
     setTasks(newArr);
 
     setTextEntered('');
     // Stock les taches dans le localstorage
     localStorage.setItem('my-tasks', JSON.stringify(newArr));
   };
-  console.log(tasks);
+  console.log(inputRef);
 
   return (
     <main className="bg-slate-900 min-h-screen pt-5 px-10">
@@ -66,6 +66,7 @@ Le useEffect il permet d'excuter le code au montage du composant
           value={textEntered}
           type="text"
           className="w-full md:w-2/3"
+          ref={inputRef}
         />
         <input
           type="submit"
