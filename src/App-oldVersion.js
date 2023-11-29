@@ -23,7 +23,7 @@ function App() {
       setTasks(tasksList);
     }
   }, []);
-  console.log(tasks);
+
 
   const onChangeHandler = function (event) {
     // event.target => document.querySelector('input)
